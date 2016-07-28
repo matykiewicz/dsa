@@ -114,38 +114,28 @@ void print_da ( int *array ) {
 
 
 
-void sort_node ( node *nodes, int *result, int *location ) {
+void sort_node ( node *nodes, int **result, int *location ) {
 
   int added = 0;
   if ( nodes != NULL ) {
     if ( nodes->left != NULL ) {
       sort_node(nodes->left,result,location);
     } else {
-      result[*location] = nodes->x;
-      result = (int *) realloc(result,(*location+5)*sizeof(int));
-      result[*location+1] = -1;
+      (*result)[*location] = nodes->x;
+      *result = (int *) realloc(*result,(*location+5)*sizeof(int));
+      (*result)[*location+1] = -1;
 
-      printf("here1\n");
-      printf("%d %d %u\n",nodes->x,*location,nodes);
-      print_da(result);
-      getchar();
       
 
       (*location)++;
       added = 1;
     } 
 
-
-
     if ( !added ) { 
-      result[*location] = nodes->x;
-      result = (int *) realloc(result,(*location+5)*sizeof(int));
-      result[*location+1] = -1;
+      (*result)[*location] = nodes->x;
+      *result = (int *) realloc(*result,(*location+5)*sizeof(int));
+      (*result)[*location+1] = -1;
 
-      printf("here2\n");
-      printf("%d %d %u\n",nodes->x,*location,nodes);
-      print_da(result);
-      getchar();
 
       (*location)++;
       added = 1;
@@ -211,7 +201,7 @@ int main ( ) {
   int location = 0;
   result[0] = -1;
   result[1] = -1;
-  sort_node(nodes,result,&location);
+  sort_node(nodes,&result,&location);
   print_da(result);
   // - - pause
   getchar();
