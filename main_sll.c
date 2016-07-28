@@ -4,13 +4,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-
-typedef struct sdll {
-  int x;
-  struct sdll *next;
-  struct sdll *prev;
-} dll;
-
 typedef struct ssll {
   int x;
   struct ssll *next;
@@ -136,45 +129,25 @@ void print_sll ( sll *this_sll ) {
   while ( current != NULL ) {
     printf("%02d ",current->x);
     current = current->next;
-    //break;
   }
   printf("\n");
 }
 
-void bubble_sort ( sll **this_sll ) {
-
-  int changed = 1;
-  int i = 0;
-  sll *current = NULL;
-  sll *temp = NULL;
-  sll *tempnext = NULL;
-  sll *next = NULL;
-  sll *nextnext = NULL;
-  while ( changed == 1 ) {
-    changed = 0;
-    if ( (*this_sll)->x > (*this_sll)->next->x ) {
-      temp = *this_sll;
-      tempnext = (*this_sll)->next;
-      temp->next = (*this_sll)->next->next;
-      tempnext->next = temp;
-      *this_sll = tempnext;
+int find_sll_at ( sll *this_sll, int x ) {
+  int result = -1;
+  sll *current = this_sll;
+  while ( current != NULL ) {
+    result++;
+    if ( current->x == x ) {
+      return(result);
     }
-    current = *this_sll;
-    while ( current->next->next != NULL ) {
-      if ( current->next->x > current->next->next->x ) {
-	next = current->next;
-	nextnext = current->next->next;
-	next->next = current->next->next->next;
-	current->next = nextnext;
-	current->next->next = next;
-	changed = 1;
-      }
-      current = current->next;
-    }
+    current = current->next;
   }
+  result = -1;
+  return(result);
 }
 
-void bubble_sort2 ( sll **this_sll ) {
+void bubble_sort ( sll **this_sll ) {
   int changed = 1;
   sll **current = NULL;
   sll *prev = NULL;
@@ -213,8 +186,13 @@ int main ( ) {
   }
   // - - print
   print_sll(this_sll);
+  // - - find
+  for ( i = 0; i < 50; i++ ) {
+    r = rand()%100;
+    printf("Found %d at %d\n",r,find_sll_at(this_sll,r));
+  }
   // - - sort
-  bubble_sort2(&this_sll);
+  bubble_sort(&this_sll);
   print_sll(this_sll);
   // - - find
   print_sll(find_sll(this_sll,0));
