@@ -12,18 +12,18 @@ typedef struct sbst {
 
 void add_bst ( bst **bsts, int x ) {
   bst *new_bst = NULL;
-  if ( *bsts == NULL ) {
-   new_bst = malloc(sizeof(bst));
-   new_bst->x = x;
-   new_bst->left = NULL;
-   new_bst->right = NULL;
-   *bsts = new_bst;
-  } else {
+  if ( *bsts != NULL ) {
     if ( x < (*bsts)->x ) {
       add_bst(&((*bsts)->left),x);
     } else {
       add_bst(&((*bsts)->right),x);
     }
+  } else {
+   new_bst = (bst *) malloc(sizeof(bst));
+   new_bst->x = x;
+   new_bst->left = NULL;
+   new_bst->right = NULL;
+   *bsts = new_bst;
   }
 }
 
@@ -85,7 +85,7 @@ void delete_bst ( bst **bsts, int x ) {
 }
 
 void print_bst ( bst *bsts, int level ) {
-  int i = 0;
+  int i = 0; // pre-order traversal
   if ( bsts != NULL ) {
     for ( i = 0; i < level; i ++ ) {
       printf("   ");

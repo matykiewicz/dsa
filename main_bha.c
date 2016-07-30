@@ -2,63 +2,71 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdlib.h>
+#include <math.h>
 
-typedef struct sbht {
-  int x;
-  struct sbht *left;
-  struct sbht *right;
-} bht;
 
-void add_bht ( bht **bhts, int x ) {
-  bht *new_bht = NULL;
-  if ( *bhts != NULL ) {
-   if ( x < (*bhts)->x ) {
-      add_bht(&((*bhts)->left),x);
-    } else {
-      add_bht(&((*bhts)->right),x);
+void print_bha ( int *bhas ) {
+  int size = bhas[0];
+  int i = 0;
+  for ( i = 1; i <= size; i++ ) {
+    printf("%d ",bhas[i]);
+  }
+  printf("\n");
+}
+
+void siftup ( int **bhas, int child ) {
+  int parent = floor((child-1)/2)+1;
+  int temp = 0;
+  if ( (*bhas)[parent] > (*bhas)[child] ) {
+    temp = (*bhas)[child];
+    (*bhas)[child] = (*bhas)[parent];
+    (*bhas)[parent] = temp;
+    if ( parent > 1 ) {
+      siftup(bhas,parent);
     }
-
-  } else {
-   new_bht = malloc(sizeof(bht));
-   new_bht->x = x;
-   new_bht->left = NULL;
-   new_bht->right = NULL;
-   *bhts = new_bht;
   }
 }
 
-void upheap ( bht **bhts, int x ) {
-}
-
-void print_bht ( bht *bhts, int level ) {
-  int i = 0; // pre-order traversal
-  if ( bhts != NULL ) {
-    for ( i = 0; i < level; i ++ ) {
-      printf("   ");
-    }
-    printf("%03d (%u %u %u)\n",bhts->x,(int) bhts, (int) bhts->left,(int) bhts->right);
-    if ( bhts->left != 0 ) {
-      print_bht(bhts->left,level+1);
-    }
-    if ( bhts->right != 0 ) {
-      print_bht(bhts->right,level+1);
-    }
+void add_bha ( int **bhas, int x ) {
+  int location = (*bhas)[0];
+  printf("%d \n",location);
+  *bhas = (int *) realloc(*bhas,(location+2)*sizeof(int));
+  location++;
+  (*bhas)[0] = location;
+  (*bhas)[location] = x;
+  if ( location > 1 ) {
+    siftup(bhas,location);
   }
 }
+
+void siftdown ( int **bhas, int *position ) {
+
+}
+
+
+void delete_bha ( int **bhas, int x ) {
+}
+
 
 int main ( ) {  
 
   int i = 0;
   int r = 0;
-  bht *bhts = NULL; 
-  bht **this_bht = NULL;
+  int *bhas = (int *) malloc(1*sizeof(int)); 
+  bhas[0] = 0;
   srand(time(NULL));
   // - - create
   // - - add
   for ( i = 0; i < 15; i++ ) {
-    add_bht(&bhts,rand()%30);
+    add_bha(&bhas,rand()%30);
+
+  print_bha(bhas);
+  getchar();
+
   }
   // - - print
-  print_bht(bhts,0);
+  print_bha(bhas);
+  // - - pause
+  getchar();
  
 }
