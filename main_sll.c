@@ -60,7 +60,7 @@ int pop_sll ( sll **this_sll ) {
   }
 }
 
-void add_sll_at ( sll **this_sll, int x, int at ) {
+void add_at_sll ( sll **this_sll, int x, int at ) {
   int i = 1;
   sll *new_sll = NULL;
   sll *current = NULL;
@@ -84,7 +84,7 @@ void add_sll_at ( sll **this_sll, int x, int at ) {
   }
 }
 
-int remove_sll_at ( sll **this_sll, int at ) {
+int remove_at_sll ( sll **this_sll, int at ) {
   int i = 1;
   int result = -1;
   sll *current = NULL;
@@ -133,7 +133,7 @@ void print_sll ( sll *this_sll ) {
   printf("\n");
 }
 
-int find_sll_at ( sll *this_sll, int x ) {
+int find_at_sll ( sll *this_sll, int x ) {
   int result = -1;
   sll *current = this_sll;
   while ( current != NULL ) {
@@ -189,7 +189,7 @@ int main ( ) {
   // - - find
   for ( i = 0; i < 50; i++ ) {
     r = rand()%100;
-    printf("Found %d at %d\n",r,find_sll_at(this_sll,r));
+    printf("Found %d at %d\n",r,find_at_sll(this_sll,r));
   }
   // - - sort
   bubble_sort(&this_sll);
@@ -210,20 +210,20 @@ int main ( ) {
   }
   printf("\n");
   // - - add at
-  add_sll_at(&this_sll,1,0);
-  add_sll_at(&this_sll,2,0);
-  add_sll_at(&this_sll,3,0);
-  add_sll_at(&this_sll,4,1);
-  add_sll_at(&this_sll,5,1);
-  add_sll_at(&this_sll,6,9);
-  add_sll_at(&this_sll,7,9);
+  add_at_sll(&this_sll,1,0);
+  add_at_sll(&this_sll,2,0);
+  add_at_sll(&this_sll,3,0);
+  add_at_sll(&this_sll,4,1);
+  add_at_sll(&this_sll,5,1);
+  add_at_sll(&this_sll,6,9);
+  add_at_sll(&this_sll,7,9);
   print_sll(this_sll);
   // - - remove at
-  printf("del : %02d\n",remove_sll_at(&this_sll,0));
-  printf("del : %02d\n",remove_sll_at(&this_sll,9));
-  printf("del : %02d\n",remove_sll_at(&this_sll,9));
-  printf("del : %02d\n",remove_sll_at(&this_sll,2));
-  printf("del : %02d\n",remove_sll_at(&this_sll,1));
+  printf("del : %02d\n",remove_at_sll(&this_sll,0));
+  printf("del : %02d\n",remove_at_sll(&this_sll,9));
+  printf("del : %02d\n",remove_at_sll(&this_sll,9));
+  printf("del : %02d\n",remove_at_sll(&this_sll,2));
+  printf("del : %02d\n",remove_at_sll(&this_sll,1));
   print_sll(this_sll);
   // - - pause
   getchar();

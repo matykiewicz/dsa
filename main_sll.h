@@ -1,9 +1,9 @@
 void bubble_sort(sll **this_sll);
-int find_sll_at(sll *this_sll,int x);
+int find_at_sll(sll *this_sll,int x);
 void print_sll(sll *this_sll);
 sll *find_sll(sll *this_sll,int x);
-int remove_sll_at(sll **this_sll,int at);
-void add_sll_at(sll **this_sll,int x,int at);
+int remove_at_sll(sll **this_sll,int at);
+void add_at_sll(sll **this_sll,int x,int at);
 int pop_sll(sll **this_sll);
 void push_sll(sll **this_sll,int x);
 void add_sll(sll **this_sll,int x);

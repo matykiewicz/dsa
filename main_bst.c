@@ -116,14 +116,14 @@ void sort_bst ( bst *bsts, int **result, int *location ) {
       sort_bst(bsts->left,result,location);
     } else {
       (*result)[*location] = bsts->x;
-      *result = (int *) realloc(*result,(*location+5)*sizeof(int));
+      *result = (int *) realloc(*result,(*location+2)*sizeof(int));
       (*result)[*location+1] = -1;
       (*location)++;
       added = 1;
     } 
     if ( !added ) { 
       (*result)[*location] = bsts->x;
-      *result = (int *) realloc(*result,(*location+5)*sizeof(int));
+      *result = (int *) realloc(*result,(*location+2)*sizeof(int));
       (*result)[*location+1] = -1;
       (*location)++;
     }
