@@ -12,3 +12,8 @@ Couple basic algorithms:
 - Print/Traverse
 - Find/Search (also find at...)
 - Sort/Order
+
+Check memory leaks:
+
+    valgrind --tool=memcheck --leak-check=yes example1
+
