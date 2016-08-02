@@ -4,6 +4,7 @@ Couple basic structures:
 - Singly Linked List (sll)
 - Binary Sort Tree (bst)
 - Binary Heap Array (bha)
+- Hash Table as Arrays (hta)
 
 Couple basic algorithms:
 - Add/Insert
