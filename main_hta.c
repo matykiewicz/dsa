@@ -34,7 +34,7 @@ unsigned long hash_str ( unsigned char *str ) {
   unsigned long hash = 0;
   int c;
   while ( (c = *str++) ) {
-    hash = (((hash<<5) + hash)) + c;
+    hash = (((hash<<5) + hash)) + ((c*c)>>5);
   }
   return(hash);
 }
