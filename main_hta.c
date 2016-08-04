@@ -31,15 +31,20 @@ hta *create_hta ( int size ) {
 // -- http://www.cse.yorku.ca/~oz/hash.html
 
 unsigned long hash_str ( unsigned char *str ) {
-  unsigned long hash = 0;
+  double hash = 0;
+  double hashhash = 1;
   int c;
+  int j=2;
   while ( (c = *str++) ) {
-    hash = (((hash<<5) + hash)) + ((c*c)>>5);
+    hash = ((double) c)/255;
+    for ( int i = 0; i < j; i++ ) { 
+      hash = 3.9*hash*(1-hash);
+    }
+    j++;
+    hashhash = 10*hashhash + 300*hash;
   }
-  return(hash);
+  return((unsigned long) hashhash);
 }
-
-
 
 // unsigned long hash_str ( unsigned char *str ) {
 //   unsigned long hash = 0;
@@ -102,7 +107,7 @@ int main ( ) {
   // - - create
   hta *this_hta = create_hta(size);
   // - - add 
-  for ( i = 0; i < (int) (size/2); i++ ) {
+  for ( i = 0; i < (int) (size/5); i++ ) {
     r = rand()%10+4;
     key = (char *) calloc((r+1),sizeof(char));
     for ( j = 0; j < r; j++ ) {
