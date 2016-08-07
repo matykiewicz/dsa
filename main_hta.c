@@ -9,22 +9,24 @@
 typedef struct {
   int size;
   int collisions;
+  int skips;
   int inserts;
-  void **keys;
+  char **keys;
   int *values;
 } hta;
 
 hta *create_hta ( int size ) {
   int i = 0;
   hta *h = calloc(1,sizeof(hta));
-  h->keys = calloc(size,sizeof(void *));
-  for ( i = 0; i < size; i++ ) {
+  h->keys = calloc(size+1,sizeof(void *));
+  for ( i = 0; i < (size+1); i++ ) {
     h->keys[i] = NULL;
   }
-  h->values = calloc(size,sizeof(int));
+  h->values = calloc(size+1,sizeof(int));
   h->size = size;
   h->collisions = 0;
   h->inserts = 0;
+  h->skips = 0;
   return(h);
 }
 
@@ -32,83 +34,18 @@ hta *create_hta ( int size ) {
 // -- http://www.cse.yorku.ca/~oz/hash.html
 // -- http://www.partow.net/programming/hashfunctions/
 
-// unsigned long hash_str ( unsigned char *str, int size ) {
-//   double hash = 0.1234;
-//   int c;
-//   int j=1;
-//   int index;
-//   while ( (c = *str++) ) {
-//     hash = (hash + ((double) (c-64))/26)/2;
-//     for ( int i = 0; i < j; i++ ) { 
-//       hash = 3.999999*hash*(1-hash);
-//     }
-//     j++;
-//   }
-//   //printf("%.5f\n",hash);
-//   index = (int) (hash*size);
-//   return(index);
-// }
-
 int hash_str ( unsigned char *str, int size ) {
-  unsigned long hash = 0;
+  unsigned long hash = 255;
   unsigned long c;
-  int index = 0;
+  int index = 1;
   while ( (c = *str++) ) {
-    hash += (hash<<5) + c;
+    hash += (hash<<5) - c;
   }
   index = (int) (hash&size);
   return(index);
 }
 
-//unsigned long hash_str ( unsigned char *str ) {
-//  double hash = 0;
-//  double hashhash = 1;
-//  int c;
-//  int j=2;
-//  while ( (c = *str++) ) {
-//    hash = ((double) c)/255;
-//    for ( int i = 0; i < j; i++ ) { 
-//      hash = 3.9*hash*(1-hash);
-//    }
-//    j++;
-//    hashhash = 10*hashhash + 300*hash;
-//  }
-//  return((unsigned long) hashhash);
-//}
-
-// unsigned long hash_str ( unsigned char *str ) {
-//   unsigned long hash = 0;
-//   int c;
-//   while ( (c = *str++) ) {
-//     hash += c;
-//     hash += (hash << 10);
-//     hash ^= (hash >> 6);
-//   }
-//   hash += (hash << 3);
-//   hash ^= (hash >> 11);
-//   hash += (hash << 15);
-//   return(hash);
-// }
-
-//unsigned long hash_str ( unsigned char *str ) {
-//  unsigned long hash = 5381;
-//  int c;
-//  while ( (c = *str++) ) {
-//    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-//  }
-//  return(hash);
-//}
-
-//unsigned long hash_str ( unsigned char *str ) {
-//  unsigned long hash = 0;
-//  int c;
-//  while ( (c = *str++) ) {
-//    hash = c + (hash << 6) + (hash << 16) - hash;
-//  }
-//  return(hash);
-//}
-
-void add_hta ( hta *this_hta, void *key, int value ) {
+void add_hta ( hta *this_hta, char *key, int value ) {
   int i = hash_str((unsigned char *) key,this_hta->size);
   this_hta->inserts++;
   if ( this_hta->keys[i] == NULL ) {
@@ -116,11 +53,27 @@ void add_hta ( hta *this_hta, void *key, int value ) {
     this_hta->values[i] = value;
   } else if ( strcmp(key,this_hta->keys[i]) != 0 ) {
     this_hta->collisions++;
+    i++;
+    while ( this_hta->keys[i] != NULL ) {
+      i++;
+      if ( i > this_hta->size ) {
+	i = 1;
+      }
+      this_hta->skips++;
+    }
+    this_hta->keys[i] = key;
+    this_hta->values[i] = value;
   }
 }
 
-int find_hta (hta *this_hta, void *key) {
+int find_hta (hta *this_hta, char *key) {
   int i = hash_str((unsigned char *) key,this_hta->size);
+  while ( strcmp(key,this_hta->keys[i]) != 0 ) {
+    i++;
+    if ( i > this_hta->size ) {
+      i = 1;
+    }
+  }
   return(this_hta->values[i]);
 }
 
@@ -131,11 +84,11 @@ int main ( ) {
   int r = 0;
   int size = ((int) 0xFFFFF); printf("size %d\n",size);
   char *key = NULL;
-  srand(123456);
+  srand(1234567);
   // - - create
   hta *this_hta = create_hta(size);
   // - - add 
-  for ( i = 0; i < (int) (10000); i++ ) {
+  for ( i = 0; i < (int) (size/2); i++ ) {
     r = rand()%11+4;
     key = (char *) calloc((r+1),sizeof(char));
     for ( j = 0; j < r; j++ ) {
@@ -146,8 +99,9 @@ int main ( ) {
   }
   printf("%s %d\n",this_hta->keys[1],this_hta->values[1]);
   printf("Collisions %f %d\n",(double) (((double) this_hta->collisions)/((double) this_hta->inserts)),this_hta->inserts);
+  printf("Skips %f %d\n",(double) (((double) this_hta->skips)/((double) this_hta->inserts)),this_hta->inserts);
   // - - find
-  srand(123456);
+  srand(1234567);
   int not_found = 0;
   for ( i = 0; i < (int) (10000); i++ ) {
     r = rand()%11+4;
@@ -161,10 +115,11 @@ int main ( ) {
       not_found++;
       printf("%s %d %d\n",key,r,f);
     }
+    free(key);
   }
   printf("Not found %f %d\n",(double) (((double) not_found)/((double) this_hta->inserts)),not_found);
   // - - destroy
-  for ( i = 0; i < this_hta->size; i++ ) {
+  for ( i = 0; i < (this_hta->size+1); i++ ) {
     free(this_hta->keys[i]);
   }
   free(this_hta->values);
