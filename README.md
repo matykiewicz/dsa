@@ -5,6 +5,8 @@ Couple basic structures:
 - Binary Sort Tree (bst)
 - Binary Heap Array (bha)
 - Hash Table as Arrays (hta)
+- Arrays (for searching and sorting) 
+- Trees (for traversal)
 
 Couple basic algorithms:
 - Add/Insert
