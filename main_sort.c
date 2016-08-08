@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
+#define max(a,b) (a>b?a:b)
+#define min(a,b) (a<b?a:b)
 
 void print_ar ( int *array, int size ) {
   int i = 0;
@@ -28,24 +30,147 @@ void insert_sort ( int *array, int size ) {
   }
 }
 
+void selection_sort ( int *array, int size ) {
+  int i = 0;
+  int j = 0;
+  int imin = 0;
+  int t = 0;
+  for ( i = 0; i < size; i++ ) {
+    imin = i;
+    for ( j = i+1; j < size; j++ ) {
+      if ( array[imin] > array[j] ) {
+	imin = j;
+      }
+    }
+    t = array[i];
+    array[i] = array[imin];
+    array[imin] = t;
+  }
+}
+
+void bubble_sort ( int *array, int size ) {
+
+ int i = 0;
+ int t = 0;
+ int n = size;
+ char changed = 1;
+  while ( changed ) {
+    changed = 0;
+    for ( i = 0; i < (n-1); i++ ) {
+      if ( array[i] > array[i+1] ) {
+	t = array[i];
+	array[i] = array[i+1];
+	array[i+1] = t;
+	changed = 1;
+      }
+    }
+    n--;
+  }
+}
+
+void buttom_up_merge ( int *a, int left, int right, int end, int *b ) {
+  int i = left;
+  int j = right;
+  int k = 0;
+  for ( k = left; k < end; k ++ ) {
+    // - - 5,6 | 3,4 -> 3,4,5,6
+    // - - 1,2 | 3,4 -> 1,2,3,4
+    // - - 1,3 | 2,4 -> 1,2,3,4
+    if ( i < right && ( j >= end || a[i] <= a[j] ) ) {
+      b[k] = a[i];
+      i++;
+    } else {
+      b[k] = a[j];
+      j++;
+    }
+  }
+}
+
+void copy_array ( int *b, int *a, int size ) {
+  int i = 0;
+  for ( i = 0; i < size; i++ ) {
+    a[i] = b[i];
+  }
+}
+
+void buttom_up_merge_sort ( int *a, int *b, int size ) {
+  int width = 1;
+  int i = 0;
+  for ( width = 1; width < size; width = 2*width ) {
+    for ( i = 0; i < size; i = i+2*width ) {
+      // - - 0-1,2-3 (width=2) -> 0,2,4
+      buttom_up_merge(a,i,min(i+width,size),min(i+width*2,size),b);
+    }
+    copy_array(b,a,size);
+  }
+}
+
+void merge_sort ( int *a, int size ) {
+  int *b = calloc(size,sizeof(int));
+  buttom_up_merge_sort(a,b,size);
+  free(b);
+}
+
 int main ( int argc, char **argv ) {
 
-  int size = 10000;
+  int size = 15000;
   int i = 0;
   clock_t start, end;
   int *array = calloc(size,sizeof(int));
-  srand(time(NULL));
+  // - - - - - - -
   // - - randomize
+  srand(1234567);
   for ( i = 0; i < size; i++ ) {
     array[i] = rand()%size;
   }
   print_ar(array,20);
-  // - - sort
+  // - - insertion sort
   start = clock();
   insert_sort(array,size);
   end = clock();
+  print_ar(array,30);
+  printf("Insert time: %lu\n",(end-start)/1000);
+  // - - - - - - -
+  // - - randomize
+  srand(1234567);
+  for ( i = 0; i < size; i++ ) {
+    array[i] = rand()%size;
+  }
   print_ar(array,20);
-  printf("time: %lu\n",(end-start)/1000);
+  // - - selection sort
+  start = clock();
+  selection_sort(array,size);
+  end = clock();
+  print_ar(array,30);
+  printf("Selection time: %lu\n",(end-start)/1000);
+  // - - - - - - -
+  // - - randomize
+  srand(1234567);
+  for ( i = 0; i < size; i++ ) {
+    array[i] = rand()%size;
+  }
+  print_ar(array,20);
+  // - - bubble sort
+  start = clock();
+  bubble_sort(array,size);
+  end = clock();
+  print_ar(array,30);
+  printf("Bubble time: %lu\n",(end-start)/1000);
+  // - - - - - - -
+  // - - randomize
+  srand(1234567);
+  for ( i = 0; i < size; i++ ) {
+    array[i] = rand()%size;
+  }
+  print_ar(array,20);
+  // - - merge sort
+  start = clock();
+  merge_sort(array,size);
+  end = clock();
+  print_ar(array,30);
+  printf("Merge time: %lu\n",(end-start)/1000);
+
+  // - - cleanup
   free(array);
 
 }

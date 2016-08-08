@@ -7,8 +7,8 @@
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
 
-#ifndef _MAIN_TREE_C_
-#define _MAIN_TREE_C_
+#ifndef _MAIN_SEARCH_C_
+#define _MAIN_SEARCH_C_
 #endif
 
 int main ( int argc, char **argv ) {
