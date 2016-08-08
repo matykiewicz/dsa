@@ -12,7 +12,9 @@ Couple basic algorithms:
 - Add/Insert
 - Delete/Remove (also remove at...)
 - Print/Traverse
+ - Pre-order tree traversal
 - Find/Search (also find at...)
+ - Linear search
 - Sort/Order
  - Bubble sort
  - Insert sort
