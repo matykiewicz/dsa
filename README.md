@@ -14,6 +14,12 @@ Couple basic algorithms:
 - Print/Traverse
 - Find/Search (also find at...)
 - Sort/Order
+ - Bubble sort
+ - Insert sort
+ - Selection sort
+ - Merge sort
+ - Heap sort
+ - Binary search tree sort
 
 Check memory leaks:
 
