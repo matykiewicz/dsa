@@ -1,12 +1,13 @@
 # Data Structures and Algorithms (DSA)
 
 Couple basic structures:
+- Arrays (mostly for searching and sorting) 
 - Singly Linked List (sll)
 - Binary Sort Tree (bst)
 - Binary Heap Array (bha)
 - Hash Table as Arrays (hta)
-- Arrays (for searching and sorting) 
-- Trees (for traversal)
+- Trees
+- Graphs
 
 Couple basic algorithms:
 - Add/Insert
@@ -14,7 +15,7 @@ Couple basic algorithms:
 - Print/Traverse
  - Pre-order tree traversal
 - Find/Search (also find at...)
- - Linear search
+ - Linear search (x2)
 - Sort/Order
  - Bubble sort
  - Insert sort

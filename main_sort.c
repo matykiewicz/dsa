@@ -290,11 +290,6 @@ int main ( int argc, char **argv ) {
   }
   print_ar(array,25);
   // - - heap sort
-
-
-//int tarray[8] = {6,5,3,1,8,7,2,4};
-//size = 8;
-
   start = clock();
   heap_sort(array,size);
   end = clock();
