@@ -20,7 +20,8 @@ Couple basic algorithms:
  - Insert sort
  - Selection sort
  - Merge sort
- - Heap sort
+ - Quick sort
+ - Heap sort (x2)
  - Binary search tree sort
 
 Check memory leaks:

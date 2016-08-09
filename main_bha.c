@@ -18,6 +18,16 @@ void print_bha ( int *bhas ) {
   printf("\n");
 }
 
+void print_first_bha ( int *bhas, int first ) {
+  int size = bhas[0];
+  if ( first < size ) size = first;
+  int i = 0;
+  for ( i = 1; i <= size; i++ ) {
+    printf("%d ",bhas[i]);
+  }
+  printf("\n");
+}
+
 void siftup ( int **bhas, int child ) {
   int parent = floor(child/2);
   int temp = 0;
@@ -42,7 +52,7 @@ void add_bha ( int **bhas, int x ) {
   }
 }
 
-void siftdown ( int **bhas, int parent ) {
+void siftdown_experimental ( int **bhas, int parent ) {
   int child_l = parent*2;
   int child_r = parent*2+1;
   int location = (*bhas)[0];
@@ -53,14 +63,14 @@ void siftdown ( int **bhas, int parent ) {
       (*bhas)[parent] = (*bhas)[child_l];
       (*bhas)[child_l] = temp;
       if ( child_l < location ) {
-	siftdown(bhas,child_l);
+	siftdown_experimental(bhas,child_l);
       }
     } else if ( child_r <= location ) {
       temp = (*bhas)[parent];
       (*bhas)[parent] = (*bhas)[child_r];
       (*bhas)[child_r] = temp;
       if ( child_r < location ) {
-	siftdown(bhas,child_r);
+	siftdown_experimental(bhas,child_r);
       }
     } else if ( child_l <= location ) {
       temp = (*bhas)[parent];
@@ -69,6 +79,58 @@ void siftdown ( int **bhas, int parent ) {
     }
   }
 }
+
+void siftdown_recursive ( int **bhas, int parent ) {
+  int child_l = parent*2;
+  int child_r = parent*2+1;
+  int location = (*bhas)[0];
+  int temp = 0;
+  int swap = parent;
+  if ( child_l <= location ) {
+    if ( (*bhas)[swap] < (*bhas)[child_l] ) {
+      swap = child_l;
+    }
+    if ( child_r <= location && (*bhas)[swap] < (*bhas)[child_r] ) {
+      swap = child_r;
+    }
+    if ( swap != parent ) {
+      temp = (*bhas)[parent];
+      (*bhas)[parent] = (*bhas)[swap];
+      (*bhas)[swap] = temp;
+      if ( swap < location ) {
+	siftdown_recursive(bhas,swap);
+      }
+    }
+  }
+}
+
+void siftdown_iterative ( int **bhas, int parent ) {
+  int child_l = parent*2;
+  int child_r = parent*2+1;
+  int location = (*bhas)[0];
+  int temp = 0;
+  int swap = parent;
+  while ( child_l <= location ) {
+    if ( (*bhas)[swap] < (*bhas)[child_l] ) {
+      swap = child_l;
+    }
+    if ( child_r <= location && (*bhas)[swap] < (*bhas)[child_r] ) {
+      swap = child_r;
+    }
+    if ( swap == parent ) {
+      return;
+    } else {
+      temp = (*bhas)[parent];
+      (*bhas)[parent] = (*bhas)[swap];
+      (*bhas)[swap] = temp;
+      parent = swap;
+    }
+    child_l = parent*2;
+    child_r = parent*2+1;
+  }
+}
+
+void (*siftdown)() = siftdown_iterative;
 
 void delete_bha ( int **bhas, int x ) {
   int i = 1;
@@ -111,6 +173,15 @@ int delete_first_bha ( int **bhas ) {
 void print_da ( int *array ) {
   int i = 0;
   while ( array[i] != -1 ) {
+    printf("%d ",array[i]);
+    i++;
+  }
+  printf("\n");
+}
+
+void print_first_da ( int *array, int first ) {
+  int i = 0;
+  while ( i < first && array[i] != -1 ) {
     printf("%d ",array[i]);
     i++;
   }
@@ -165,7 +236,32 @@ int main ( ) {
   sort_bha(&bhas,&result);
   print_da(result);
   free(result);
-
+  free(bhas);
+  // - - big sort
+  clock_t start, end;
+  int size = 30000;
+  bhas = (int *) malloc(1*sizeof(int)); 
+  bhas[0] = 0;
+  srand(time(NULL));
+  // - - add
+  start = clock();
+  for ( i = 0; i < size; i++ ) {
+    add_bha(&bhas,rand()%size);
+  }
+  end = clock();
+  printf("Add time: %lu\n",(end-start)/1000);
+  // - - print
+  print_first_bha(bhas,25);
+  result = (int *) malloc((bhas[0]+1)*sizeof(int));
+  result[bhas[0]] = -1;
+  start = clock();
+  sort_bha(&bhas,&result);
+  end = clock();
+  printf("Sort time: %lu\n",(end-start)/1000);
+  print_first_da(result,25);
+  free(result);
+  free(bhas);
+  // - - finish
   return(1);
  
 }

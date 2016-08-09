@@ -164,14 +164,28 @@ void quick_sort ( int *a, int low, int high ) {
 void sift_down ( int *a, int parent, int end ) {
   int child_l = left_child(parent);
   int child_r = right_child(parent);
+  int root = parent;
   int temp;
-
-printf("%d %d %d",a[parent],a[child_l],a[child_r]);
-getchar();
-
-  if ( ( child_l <= end && a[parent] < a[child_l] ) || ( child_r <= end && a[parent] < a[child_r] ) ) {
+  int swap;
+  while ( child_l <= end ) {
+    swap = root;
+    if ( a[swap] < a[child_l] ) {
+      swap = child_l;
+    }
+    if ( child_r <= end && a[swap] < a[child_r] ) {
+      swap = child_r;
+    }
+    if ( swap == root ) {
+      return;
+    } else {
+      temp = a[root];
+      a[root] = a[swap];
+      a[swap] = temp;
+      root = swap;
+    } 
+    child_l = left_child(root);
+    child_r = right_child(root);
   }
-
 }
 
 void heapify ( int *a, int size ) {
@@ -184,16 +198,22 @@ void heapify ( int *a, int size ) {
 
 void heap_sort ( int *a, int size ) {
   int end = size-1;
+  int temp;
   heapify(a,size);
-  //while ( end > 0 ) {
-  //}
+  while ( end > 0 ) {
+    temp = a[0];
+    a[0] = a[end];
+    a[end] = temp;
+    end--;
+    sift_down(a,0,end);
+  }
 }
 
 #ifndef _USE_DSA_IN_R_
 
 int main ( int argc, char **argv ) {
 
-  int size = 25;
+  int size = 30000;
   int i = 0;
   clock_t start, end;
   int *array = calloc(size,sizeof(int));
@@ -270,6 +290,11 @@ int main ( int argc, char **argv ) {
   }
   print_ar(array,25);
   // - - heap sort
+
+
+//int tarray[8] = {6,5,3,1,8,7,2,4};
+//size = 8;
+
   start = clock();
   heap_sort(array,size);
   end = clock();
