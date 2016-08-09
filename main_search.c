@@ -11,6 +11,10 @@
 #define _MAIN_SEARCH_C_
 #endif
 
+#ifndef _USE_IT_IN_R_
+
 int main ( int argc, char **argv ) {
 }
+
+#endif
 

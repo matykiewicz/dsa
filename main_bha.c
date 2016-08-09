@@ -5,6 +5,10 @@
 #include <math.h>
 #include <limits.h>
 
+#ifndef _MAIN_BHA_C_
+#define _MAIN_BHA_C_
+#endif
+
 void print_bha ( int *bhas ) {
   int size = bhas[0];
   int i = 0;
@@ -44,7 +48,7 @@ void siftdown ( int **bhas, int parent ) {
   int location = (*bhas)[0];
   int temp = 0;
   if ( ( child_l <= location && (*bhas)[parent] < (*bhas)[child_l] ) || ( child_r <= location && (*bhas)[parent] < (*bhas)[child_r] ) ) {
-    if ( ( child_l <= location && (*bhas)[child_l] > (*bhas)[child_r] ) ) {
+    if ( ( child_r <= location && (*bhas)[child_l] > (*bhas)[child_r] ) ) {
       temp = (*bhas)[parent];
       (*bhas)[parent] = (*bhas)[child_l];
       (*bhas)[child_l] = temp;
@@ -58,6 +62,10 @@ void siftdown ( int **bhas, int parent ) {
       if ( child_r < location ) {
 	siftdown(bhas,child_r);
       }
+    } else if ( child_l <= location ) {
+      temp = (*bhas)[parent];
+      (*bhas)[parent] = (*bhas)[child_l];
+      (*bhas)[child_l] = temp;
     }
   }
 }
@@ -117,6 +125,9 @@ void sort_bha ( int **bhas, int **result ) {
   }
 }
 
+#ifndef _USE_DSA_IN_R_
+#ifndef _USE_BHA_IN_SEARCH_
+
 int main ( ) {  
 
   int i = 0;
@@ -153,8 +164,12 @@ int main ( ) {
   result[bhas[0]] = -1;
   sort_bha(&bhas,&result);
   print_da(result);
-  // - - pause
-  getchar();
+  free(result);
+
   return(1);
  
 }
+
+#endif
+#endif
+

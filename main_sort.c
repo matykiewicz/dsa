@@ -7,6 +7,12 @@
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
 
+#ifndef _MAIN_SEARCH_C_
+#define _MAIN_SEARCH_C_
+#endif
+
+// - - http://stackoverflow.com/questions/1933759/when-is-each-sorting-algorithm-used
+
 void print_ar ( int *array, int size ) {
   int i = 0;
   for ( i = 0; i < size; i ++ ) {
@@ -14,6 +20,8 @@ void print_ar ( int *array, int size ) {
   }
   printf("\n");
 }
+
+// - - INSERT SORT
 
 void insert_sort ( int *array, int size ) {
   int i = 0;
@@ -29,6 +37,8 @@ void insert_sort ( int *array, int size ) {
     array[j+1] = t;
   }
 }
+
+// - - SELECTION SORT
 
 void selection_sort ( int *array, int size ) {
   int i = 0;
@@ -47,6 +57,8 @@ void selection_sort ( int *array, int size ) {
     array[imin] = t;
   }
 }
+
+// - - BUBBLE SORT
 
 void bubble_sort ( int *array, int size ) {
 
@@ -67,6 +79,8 @@ void bubble_sort ( int *array, int size ) {
     n--;
   }
 }
+
+// - - MERGE SORT
 
 void buttom_up_merge ( int *a, int left, int right, int end, int *b ) {
   int i = left;
@@ -111,9 +125,75 @@ void merge_sort ( int *a, int size ) {
   free(b);
 }
 
+// - - QUICK SORT
+
+int partition ( int *a, int low, int high ) {
+  int pivot = a[high];
+  int i = low;
+  int j = 0;
+  int t = 0;
+  for ( j = low; j < high; j++ ) {
+    if ( a[j] <= pivot ) {
+      t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+      i++;
+    }
+  }
+  t = a[i];
+  a[i] = a[high];
+  a[high] = t;
+  return(i);
+}
+
+void quick_sort ( int *a, int low, int high ) {
+  int p = 0;
+  if ( low < high ) {
+    p = partition(a,low,high);
+    quick_sort(a,low,p-1);
+    quick_sort(a,p+1,high);
+  }
+}
+
+// - - HEAP SORT
+
+#define parent(i) (floor((i-1)/2))
+#define left_child(i) (2*i+1)
+#define right_child(i) (2*i+2)
+
+void sift_down ( int *a, int parent, int end ) {
+  int child_l = left_child(parent);
+  int child_r = right_child(parent);
+  int temp;
+
+printf("%d %d %d",a[parent],a[child_l],a[child_r]);
+getchar();
+
+  if ( ( child_l <= end && a[parent] < a[child_l] ) || ( child_r <= end && a[parent] < a[child_r] ) ) {
+  }
+
+}
+
+void heapify ( int *a, int size ) {
+  int start = parent(size-1);
+  while ( start >= 0 ) {
+    sift_down(a,start,size-1);
+    start--;
+  }
+}
+
+void heap_sort ( int *a, int size ) {
+  int end = size-1;
+  heapify(a,size);
+  //while ( end > 0 ) {
+  //}
+}
+
+#ifndef _USE_DSA_IN_R_
+
 int main ( int argc, char **argv ) {
 
-  int size = 15000;
+  int size = 25;
   int i = 0;
   clock_t start, end;
   int *array = calloc(size,sizeof(int));
@@ -123,12 +203,12 @@ int main ( int argc, char **argv ) {
   for ( i = 0; i < size; i++ ) {
     array[i] = rand()%size;
   }
-  print_ar(array,20);
+  print_ar(array,25);
   // - - insertion sort
   start = clock();
   insert_sort(array,size);
   end = clock();
-  print_ar(array,30);
+  print_ar(array,25);
   printf("Insert time: %lu\n",(end-start)/1000);
   // - - - - - - -
   // - - randomize
@@ -136,12 +216,12 @@ int main ( int argc, char **argv ) {
   for ( i = 0; i < size; i++ ) {
     array[i] = rand()%size;
   }
-  print_ar(array,20);
+  print_ar(array,25);
   // - - selection sort
   start = clock();
   selection_sort(array,size);
   end = clock();
-  print_ar(array,30);
+  print_ar(array,25);
   printf("Selection time: %lu\n",(end-start)/1000);
   // - - - - - - -
   // - - randomize
@@ -149,12 +229,12 @@ int main ( int argc, char **argv ) {
   for ( i = 0; i < size; i++ ) {
     array[i] = rand()%size;
   }
-  print_ar(array,20);
+  print_ar(array,25);
   // - - bubble sort
   start = clock();
   bubble_sort(array,size);
   end = clock();
-  print_ar(array,30);
+  print_ar(array,25);
   printf("Bubble time: %lu\n",(end-start)/1000);
   // - - - - - - -
   // - - randomize
@@ -162,16 +242,43 @@ int main ( int argc, char **argv ) {
   for ( i = 0; i < size; i++ ) {
     array[i] = rand()%size;
   }
-  print_ar(array,20);
+  print_ar(array,25);
   // - - merge sort
   start = clock();
   merge_sort(array,size);
   end = clock();
-  print_ar(array,30);
+  print_ar(array,25);
   printf("Merge time: %lu\n",(end-start)/1000);
-
+  // - - - - - - -
+  // - - randomize
+  srand(1234567);
+  for ( i = 0; i < size; i++ ) {
+    array[i] = rand()%size;
+  }
+  print_ar(array,25);
+  // - - quick sort
+  start = clock();
+  quick_sort(array,0,size-1);
+  end = clock();
+  print_ar(array,25);
+  printf("Quick time: %lu\n",(end-start)/1000);
+  // - - - - - - -
+  // - - randomize
+  srand(1234567);
+  for ( i = 0; i < size; i++ ) {
+    array[i] = rand()%size;
+  }
+  print_ar(array,25);
+  // - - heap sort
+  start = clock();
+  heap_sort(array,size);
+  end = clock();
+  print_ar(array,25);
+  printf("Heap time: %lu\n",(end-start)/1000);
   // - - cleanup
   free(array);
 
 }
+
+#endif
 
