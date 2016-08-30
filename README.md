@@ -29,8 +29,10 @@ Some string operations:
 - String to number
 
 Check memory leaks:
+
     valgrind --tool=memcheck --leak-check=yes example1
 
 Compile C for use in R:
+
     R CMD SHLIB -o mylib.so a.f b.f -L/opt/acml3.5.0/gnu64/lib -lacml
 
