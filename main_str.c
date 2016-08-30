@@ -18,6 +18,25 @@ int GetVal ( char *this_str, int pos, int len ) {
 
 }
 
+int FindMissingNum ( char *str, int len ) {
+  
+  int i = 0;
+  int n = 0;
+  int j = 0;
+  int o = 0;
+  int missingNo = -1;
+  for ( i = 1; i <= 6; i++ ) {
+    n = GetVal(str,0,i);
+    printf("-%d",n); getchar();
+    for ( j = i; j < len; j += 1 + i ) {
+      o = GetVal(str,j,1+log10l(n+1));
+      printf("+%d",o); getchar();
+    }
+  }
+  return missingNo;
+
+}
+
 int FindMissingNumber(char *str, int len) {
   // note: it's easy to get rid of the logs but the code is just 
   // not understandable with all those counters
@@ -87,7 +106,7 @@ int main ( ) {
     }
   }
   printf("\n%s\n",str);
-  R = FindMissingNumber(str,r);
+  R = FindMissingNum(str,r);
   printf("\n%d len %d\n",R,r);
 
 }
