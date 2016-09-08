@@ -28,6 +28,9 @@ Couple basic algorithms:
 Some string operations:
 - String to number
 
+Machine Learning:
+- kNN data probing
+
 Check memory leaks:
 
     valgrind --tool=memcheck --leak-check=yes example1
