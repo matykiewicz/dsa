@@ -39,6 +39,7 @@
     - Most clustering algorithms including ensembles available in WEKA (pre-2007), Perl (pre-2007) and R (post-2007)
     - Most clustering indexes available in R (post-2007)
     - Many feature selection and feature weighting algorithms available in WEKA (pre-2007), Perl (pre-2007) and R (post-2007)
+    - Various Natural Language Processing data transformations Perl (pre-2007) and R (post-2007)
     - Various high-dimensional data visualization techniques in R (post-2007)
     - Various ML re-training and incremental learning techniques
   c) I have just theoretical knowledge about:
