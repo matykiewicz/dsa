@@ -1,0 +1,61 @@
+
+1. WHAT PROJECT HAVE YOU WORKED ON THAT YOU FEEL ARE MOST RELEVANT TO FACEBOOK?
+
+  a) Product Analytics (knowing what is happening with the product):
+    - Monthly and of feature changes on Skype platform
+
+  b) Infrasturucture Analytics (knowing what is happening with the infrasturcture):
+    - Capacity planning
+
+  c) Customer Analytics (knowing what is happening with the customers):
+    - Mojor customer pain points reconstruction from customer feedback
+
+  d) Product Improvement:
+    - Content moderation
+
+2. ARE THERE ANY OTHER PROJECTS THAT YOU WOULD LIKE TO TELL ME ABOUT?
+
+  a) Automated earlier epilepsy surgery candidacy prediction
+  b) Automated suicide risk assessment from text, audio and video 
+
+3. WHAT ML ALGORITHMS HAVE YOU DESIGNED OR APPLIED IN YOUR WORK?
+
+4. CAN YOU DESCRIBE YOUR EXPERIENCE WITH SOFTWARE DEVELOPMENT?
+
+5. WHAT ARE YOUR MOST PROFICIENT CODING LANGUAGES? 
+
+  a) R - 9 years - most of my code
+  b) C - 13 years - only some of my code
+  c) JavaScript - 11 years - occasionaly and only when needed
+  d) PHP - 13 years - occasionaly and only when needed
+
+6. WHAT ARE YOUR EXAMPLES OF OPTIMIZATIONS FOR SPEED OR SCALE?
+
+ a) Parallel programming using MPI
+ b) Distributed programming using AzureML
+ c) Code porting and memory sharing in C
+
+7. WHAT TYPE OF PROJECT WOULD YOU BE MOST INTERESTED IN AT FACEBOOK?
+
+ a) Content moderation
+ b) Ranking and relevance
+
+8. WHAT TYPE OF PROJECTS WOULD YOU BE OPEN TO AT FACEBOOK?
+
+ a) Any machine learning engineering work related to product analytics, infrastructure analytics, customer analytics, or product improvement
+ b) Any scientific research work in the area of artificial intelligence, machine learning or neural networks
+
+9. WHO DO YOU KNOW AT FACEBOOK?
+
+10. WHAT OFFICE WOULD YOU PREFER?
+
+ a) Menlo Park, CA
+ b) Mountain View, CA
+
+11. WHAT OFFICES WOULD YOU BE OPEN TO?
+
+ a) Redmond, WA
+ b) Seattle, WA
+ c) San Francisco, CA
+ d) Los Angeles, CA
+
