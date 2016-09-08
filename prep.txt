@@ -41,18 +41,22 @@
     - Many feature selection and feature weighting algorithms available in WEKA (pre-2007), Perl (pre-2007) and R (post-2007)
     - Various high-dimensional data visualization techniques in R (post-2007)
     - Various ML re-training and incremental learning techniques
+  c) I have just theoretical knowledge about:
+    - Regression analysis (one practical project that I managed)
+    - Baysian statistics (one paper that I co-authored)
 
 4. CAN YOU DESCRIBE YOUR EXPERIENCE WITH SOFTWARE DEVELOPMENT?
 
   a) Ability to work with extremely vague specification for machine learning and statistics problems
   b) Basic desing work for low user volume and small data systems
   c) Coding experience since I was 11 years old, professionaly since 2002 for my master degree
-  d) Version control using SVN, Git, TFS
-  e) Minimal testing suites, automation in testing for web development using Selenium
-  f) Extremely rudamentary build automation (regular expression to fill out PERL deployment templates and global vars)
-  g) Deployment automation using Linux enviroment and SCP/SFTP
-  h) Instrumentation on top of ML experiments using log monitoring in PROD ML enviroment
-  i) Simple HTTP failure-over calls as self-healing techniques in PROD ML enviroment
+  d) I am not that great with code documentation but I really want to improve
+  e) Version control using SVN, Git, TFS but no code integration scenarios
+  f) Minimal testing suites, automation in testing for web development using Selenium
+  g) Extremely rudamentary build automation (regular expression to fill out PERL deployment templates and global vars)
+  h) Deployment automation using Linux enviroment and SCP/SFTP
+  i) Instrumentation on top of ML experiments using log monitoring in PROD ML enviroment
+  j) Simple HTTP failure-over calls as self-healing techniques in PROD ML enviroment
   
 5. WHAT ARE YOUR MOST PROFICIENT CODING LANGUAGES? 
 
@@ -60,35 +64,42 @@
   b) C - 13 years - some of my code when speed is needed
   c) JavaScript - 11 years - occasionaly and only when web UI/UX is needed
   d) PHP - 13 years - occasionaly and only web or API server functionality is needed
+  e) I don't use Perl anymore and I did very little OOP/OOD
 
 6. WHAT ARE YOUR EXAMPLES OF OPTIMIZATIONS FOR SPEED OR SCALE?
 
- a) Parallel programming using MPI
- b) Distributed programming using AzureML
- c) Code porting and memory sharing in C
- d) Sampling techniques that are sensitive to density distribution
+  a) Parallel programming using MPI
+  b) Distributed programming using AzureML
+  c) Code porting and memory sharing in C
+  d) Sampling techniques that are sensitive to density distribution
+  e) I never got to work with really large data
 
 7. WHAT TYPE OF PROJECT WOULD YOU BE MOST INTERESTED IN AT FACEBOOK?
 
- a) Content moderation
- b) Ranking and relevance
+  a) Page/post ranking and relevance based on historical data (e.g., utility)
+  b) Content moderation (e.g., Care ML)
+  c) Ads relevance and personalization (e.g., ATLAS)
+  d) Fraud and anomaly detection (e.g., malicous Ads, malicous user behavior, fake profiles, security)
+  e) Building ML infrastructure that helps to diagnose overfitting and underfitting scenatios (e.g., internal ML utilities)
 
 8. WHAT TYPE OF PROJECTS WOULD YOU BE OPEN TO AT FACEBOOK?
 
- a) Any machine learning engineering work related to product analytics, infrastructure analytics, customer analytics, or product improvement
- b) Any scientific research work in the area of artificial intelligence, machine learning or neural networks
+  a) Any machine learning engineering work related to product analytics, infrastructure analytics, customer analytics, or product improvement
+  b) Any scientific research work in the area of artificial intelligence, machine learning or neural networks
 
 9. WHO DO YOU KNOW AT FACEBOOK?
 
+  a) Jorge Barboza - I helped by introducing science behind the concept of "inter-annotator agreement" to the content moderation team
+
 10. WHAT OFFICE WOULD YOU PREFER?
 
- a) Menlo Park, CA
- b) Mountain View, CA
-
+  a) Redmond, WA
+  b) Seattle, WA
+ 
 11. WHAT OFFICES WOULD YOU BE OPEN TO?
 
- a) Redmond, WA
- b) Seattle, WA
- c) San Francisco, CA
- d) Los Angeles, CA
+  a) Menlo Park, CA
+  b) Mountain View, CA
+  c) San Francisco, CA
+  d) Los Angeles, CA
 
