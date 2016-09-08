@@ -2,38 +2,71 @@
 1. WHAT PROJECT HAVE YOU WORKED ON THAT YOU FEEL ARE MOST RELEVANT TO FACEBOOK?
 
   a) Product Analytics (knowing what is happening with the product):
-    - Monthly and of feature changes on Skype platform
-
+    - Changes to the monthly and daily active users after launching new feature on Skype platform
+    - Monitoring and predicting user ratings of all Microsoft documentation web pages
+    - Outlier detection to monitor online bot activities
+    - Detection of reasons for product returns or functionality failures
   b) Infrasturucture Analytics (knowing what is happening with the infrasturcture):
-    - Capacity planning
-
+    - Capacity planning for bare metal and VMs using simulation techniques
+    - Auto-tagging code commits using text classification techniques
+    - Reduction of product testing based on historical fail/pass data
   c) Customer Analytics (knowing what is happening with the customers):
-    - Mojor customer pain points reconstruction from customer feedback
-
+    - Mining mojor pain points of customer journey from user feedbacks
+    - Finding reasons for online offer redemption 
+    - Abstracting reasons for product returns or functionality failures
+    - Non-linearity detection in global marketing databases
   d) Product Improvement:
-    - Content moderation
+    - Text moderation (profanity, hate speech, offensive language)
+    - Improving time-to-X in customer support through text and data mining
+    - Reduction of product testing based on historical fail/pass data
 
 2. ARE THERE ANY OTHER PROJECTS THAT YOU WOULD LIKE TO TELL ME ABOUT?
 
-  a) Automated earlier epilepsy surgery candidacy prediction
-  b) Automated suicide risk assessment from text, audio and video 
+  a) Automated earlier epilepsy surgery candidacy prediction system
+  b) Automated suicide risk assessment from text, audio and video
+  c) Ability to add semantic knowledge to a text classification problem
 
 3. WHAT ML ALGORITHMS HAVE YOU DESIGNED OR APPLIED IN YOUR WORK?
 
+  a) Design:
+    - SVM linear kernel with feature selection and feature weighting
+    - Algorithm for inducing inhibition in semantic networks
+    - Option decision trees using beam search strategy
+    - Chaotic sparse recursive neural networks with high mixing properies
+  b) Applied:
+    - Most classification algorithms including ensambles available in WEKA (pre-2007), Perl (pre-2007) and R (post-2007)
+    - Most classification quality metrics available in R (post-2007)
+    - Most clustering algorithms including ensambles available in WEKA (pre-2007), Perl (pre-2007) and R (post-2007)
+    - Most clustering indexes available in R (post-2007)
+    - Many feature selection and feature weighting algorithms available in WEKA (pre-2007), Perl (pre-2007) and R (post-2007)
+    - Various high-dimensional data visualization techniques in R (post-2007)
+    - Various ML re-training and incremental learning techniques
+
 4. CAN YOU DESCRIBE YOUR EXPERIENCE WITH SOFTWARE DEVELOPMENT?
 
+  a) Ability to work with extremely vague specification for machine learning and statistics problems
+  b) Basic desing work for low user volume and small data systems
+  c) Coding experience since I was 11 years old, professionaly since 2002 for my master degree
+  d) Version control using SVN, Git, TFS
+  e) Minimal testing suites, automation in testing for web development using Selenium
+  f) Extremely rudamentary build automation (regular expression to fill out PERL deployment templates and global vars)
+  g) Deployment automation using Linux enviroment and SCP/SFTP
+  h) Instrumentation on top of ML experiments using log monitoring in PROD ML enviroment
+  i) Simple HTTP failure-over calls as self-healing techniques in PROD ML enviroment
+  
 5. WHAT ARE YOUR MOST PROFICIENT CODING LANGUAGES? 
 
   a) R - 9 years - most of my code
-  b) C - 13 years - only some of my code
-  c) JavaScript - 11 years - occasionaly and only when needed
-  d) PHP - 13 years - occasionaly and only when needed
+  b) C - 13 years - some of my code when speed is needed
+  c) JavaScript - 11 years - occasionaly and only when web UI/UX is needed
+  d) PHP - 13 years - occasionaly and only web or API server functionality is needed
 
 6. WHAT ARE YOUR EXAMPLES OF OPTIMIZATIONS FOR SPEED OR SCALE?
 
  a) Parallel programming using MPI
  b) Distributed programming using AzureML
  c) Code porting and memory sharing in C
+ d) Sampling techniques that are sensitive to density distribution
 
 7. WHAT TYPE OF PROJECT WOULD YOU BE MOST INTERESTED IN AT FACEBOOK?
 
