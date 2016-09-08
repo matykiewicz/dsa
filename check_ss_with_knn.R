@@ -17,10 +17,10 @@ create_2d_data <<- function ( n_small = 20, n_big = 10, d_small = 0.15, d_big = 
   return(m_final);
 }
 
-check_ratio <- function ( data_matrix ) {
-  cl <- data_matrix[,3];
-  dis <- as.matrix(dist(data_matrix[,1:2]));
+check_ratio <- function ( data_matrix, f = 1:2, cl = 3 ) {
+  cl <- data_matrix[,cl];
+  dis <- as.matrix(dist(data_matrix[,f]));
   knn <- t(apply(dis,1,function(x){cl[sort(x,ind=T,dec=F)$ix]}));
-  knn_ratio <- t(apply(knn,1,function(x){sapply(seq(x),function(y){max(table(x[1:y]))/y  })}));
+  knn_ratio <- t(apply(knn,1,function(x){sapply(seq(x),function(y){max(table(x[1:y]))/y})}));
   return(knn_ratio);
 }
